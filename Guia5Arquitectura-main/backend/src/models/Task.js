@@ -1,3 +1,6 @@
+// MODELO: define cómo es una tarea. No sabe nada de HTTP ni de bases de datos.
+const STATUSES = ["pendiente", "en progreso", "finalizada"];
+
 class Task {
   constructor({ id, title, description = "", status = "pendiente" }) {
     this.id = id;
@@ -8,4 +11,4 @@ class Task {
   }
 }
 
-module.exports = { Task };
+module.exports = { Task, STATUSES };

@@ -1,4 +1,5 @@
-const { Task } = require("./domain");
+// REPOSITORIO: guarda y busca tareas (aquí en memoria). Solo se ocupa de los datos.
+const { Task } = require("../models/Task");
 
 class TaskRepository {
   constructor() {

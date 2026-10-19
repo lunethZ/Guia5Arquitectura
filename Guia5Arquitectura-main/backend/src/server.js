@@ -1,9 +1,10 @@
+// ARRANQUE: crea las piezas, las conecta y enciende el servidor.
 const express = require("express");
 const cors = require("cors");
-const { TaskRepository } = require("./taskRepository");
-const { TaskService } = require("./taskService");
-const { createTaskController } = require("./taskController");
-const { createTaskRoutes } = require("./taskRoutes");
+const { TaskRepository } = require("./repositories/taskRepository");
+const { TaskService } = require("./services/taskService");
+const { createTaskController } = require("./controllers/taskController");
+const { createTaskRoutes } = require("./routes/taskRoutes");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,9 +18,5 @@ const controller = createTaskController(service);
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api/tasks", createTaskRoutes(controller));
-
-app.use((error, req, res, next) => {
-  res.status(error.statusCode || 500).json({ error: error.message || "Error interno del servidor" });
-});
 
 app.listen(port, () => console.log(`API lista en http://localhost:${port}`));
